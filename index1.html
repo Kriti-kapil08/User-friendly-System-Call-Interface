@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure System Call Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="app">
+
+    <!-- Top bar -->
+    <header class="topbar">
+        <div class="brand">
+            <span class="logo-dot"></span>
+            <span class="brand-text">Secure System Call Interface</span>
+        </div>
+
+        <div class="status">
+            <span class="status-indicator" id="login-indicator"></span>
+            <span id="login-status-text">Not logged in</span>
+        </div>
+    </header>
+
+    <!-- Main layout -->
+    <main class="layout">
+
+        <!-- LEFT: main control panel -->
+        <section class="panel main-panel">
+
+            <h3 class="section-title">Authentication</h3>
+            <div class="auth-row">
+                <input id="user" placeholder="Username">
+                <input id="pass" type="password" placeholder="Password">
+                <button class="btn login-btn" onclick="login()">Login</button>
+            </div>
+
+            <h3 class="section-title">File Operation</h3>
+            <input id="path" placeholder="Enter full file path">
+
+            <textarea id="data" placeholder="Write data (for WRITE)"></textarea>
+
+            <div class="action-buttons">
+                <button class="btn read-btn" id="btn-read" onclick="readFile()" disabled>READ</button>
+                <button class="btn write-btn" id="btn-write" onclick="writeFile()" disabled>WRITE</button>
+                <button class="btn del-btn" id="btn-delete" onclick="deleteFile()" disabled>DELETE</button>
+            </div>
+
+            <div class="output-wrapper">
+                <div class="output-header">
+                    <span>Output</span>
+                    <span id="op-status-pill" class="pill pill-info">Idle</span>
+                </div>
+                <pre id="output">No operation yet.</pre>
+            </div>
+
+        </section>
+
+        <!-- RIGHT: side panel -->
+        <section class="panel side-panel">
+
+            <h3 class="section-title">Session Details</h3>
+            <div class="info-card">
+                <div class="info-row">
+                    <span>Current user:</span>
+                    <strong id="current-user">—</strong>
+                </div>
+                <div class="info-row">
+                    <span>Last operation:</span>
+                    <strong id="last-op">—</strong>
+                </div>
+                <div class="info-row">
+                    <span>Last status:</span>
+                    <strong id="last-status">—</strong>
+                </div>
+            </div>
+
+            <h3 class="section-title">Activity History</h3>
+            <div class="history-card">
+                <ul id="history-list">
+                    <!-- Filled by JS -->
+                </ul>
+            </div>
+
+            <div class="hint-card">
+                <h4>Tips</h4>
+                <ul>
+                    <li>Login before using READ / WRITE / DELETE.</li>
+                    <li>Use absolute paths, e.g. <code>/home/user/test.txt</code></li>
+                    <li>WRITE appends data with a new line.</li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
